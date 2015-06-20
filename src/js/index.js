@@ -110,3 +110,14 @@ $(document).ready(function() {
     }
 
 });
+
+
+function initDate(){
+    $.get("/wxuserdatareport/timemachine?openId=oStCms_QVacAlErYQQ4vQJKvh_bY",function(){
+        
+    });
+}
+
+
+
+
