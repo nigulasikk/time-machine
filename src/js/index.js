@@ -108,13 +108,58 @@ $(document).ready(function() {
     function pauseVid() {
         myVideo.pause();
     }
-
+initDate();
 });
 
 
 function initDate(){
-    $.get("/wxuserdatareport/timemachine?openId=oStCms_QVacAlErYQQ4vQJKvh_bY",function(){
-        
+    $.get("/wxuserdatareport/timemachine?openId=oStCms_QVacAlErYQQ4vQJKvh_bY",function(res){
+        $("#name").text(res.nickName);
+        $("#totalDays").text(res.totalWeixinDays);
+//初见
+        var meetTime=new Date(parseInt(res.firstMessageDetail.messageDetail.postTime));
+        $("#meet-year").text(meetTime.getFullYear());
+        $("#meet-month").text(meetTime.getMonth()+1);
+        $("#meet-day").text(meetTime.getDate());
+        $("#meet-hour").text(meetTime.getHours());
+        $("#meet-munite").text(meetTime.getMinutes());
+        // 初见照片
+        if(res.firstMessageDetail.imageVOs.length==0){
+            $("#meet-first-pic").remove();
+        }else{
+             $("#meet-first-pic").attr("src",res.firstMessageDetail.imageVOs[0].imageUrl);
+        }
+        $("#meet-say").text(res.firstMessageDetail.content);
+ //至今
+        $(".total-day").text(res.totalWeixinDays);
+        $(".total-state").text(res.totalDetailsNum);
+        $(".total-pic").text(res.totalImagesNum);
+        $(".total-words").text(res.totalWordsNum);
+
+
+//随机5张照片
+        $(".random-img-1").attr("src",res.randomImages[0].imageUrl);
+        $(".random-img-2").attr("src",res.randomImages[1].imageUrl);
+        $(".random-img-3").attr("src",res.randomImages[2].imageUrl);
+        $(".random-img-4").attr("src",res.randomImages[3].imageUrl);
+        $(".random-img-5").attr("src",res.randomImages[4].imageUrl);
+        $("#total-page").text(res.totalPagesNum);
+
+//最活跃
+        $(".active-year").text(res.mostDetailsMonth[0]);
+        $(".active-month").text(res.mostDetailsMonth[1]);
+        $(".month-states-num").text(res.mostDetailsMonthDetailsNum);
+        $(".month-pics-num").text(res.mostDetailsMonthImagesNum);
+        $(".month-fonts-num").text(res.mostDetailsMonthWordsNum);
+
+//TODO:那年今日
+        if(res.sameDayMessageDetail==null){
+            $(".last-today-p").remove();
+            $(".last-date").remove();
+        }else{
+
+        }
+
     });
 }
 
