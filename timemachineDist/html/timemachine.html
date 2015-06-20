@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="kk" content="">
+    <link rel="stylesheet" type="text/css" href="../css/timemachine.css">
+    <title>时光机</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="../ui/fullpagedist/jquery.fullPage.css" />
+</head>
+
+<body>
+    <div class="videoplay" style="position:fixed;right:10px;top:10px;z-index:2;">
+        <!-- <audio id="song" src="../video/sunshine.mp3" autoplay></audio> -->
+        <img src="../img/paly.png" id="play" width="25" style="display:none;" />
+        <img id="pause" src="../img/stop.png" width="25">
+    </div>
+     <div class="videoplay" style="position:fixed;left:10px;top:10px;z-index:2;">
+        <!-- <audio id="song" src="../video/sunshine.mp3" autoplay></audio> -->
+        <img  src="../img/copyright.png" width="100">
+    </div>
+
+   
+    <div id="fullpage">
+        <div class="section section1" id="section1">
+            <div class="content-wrap">
+                <div >
+                    <img src="../img/logo.png"  width="190">
+                </div>
+                <div style="margin-top:10px;">
+                    <img src="../img/title.png"  width="190">
+                </div>
+                <div  style="margin-top:20px;">
+                    <img src="../img/rocket.gif"  width="120">
+                </div>
+               
+            </div>
+            <div class="arr-wrap">
+                <img src="../img/arr.png" class="arr up-and-down" width="30">
+            </div>
+        </div>
+        <div class="section page2" id="section2">
+           <div class="content-wrap">
+                <h3 class="fade-in">亲爱的<span class="light-red" id="name">XXX<span></h3>
+                <p class="fade-in">转眼间微信已经陪伴你走过了<span id="totalDays">XXX</span>个日夜</p>
+                <img src="../img/2-phone.png" width="253" class="fade-in">
+              <!--   <p class="fade-in">在这里...<span class="light-blue">有你,</span><span class="light-red">有我,</span></p>
+                <p class="fade-in">还有陪你<span class="light-green">一起长大，</span><span class="light-orange">一起吵闹</span>的<span style="color:rgb(192, 104, 104);">朋友</span></p> -->
+            </div>
+            <div class="arr-wrap">
+                <img src="../img/arr.png" class="arr up-and-down" width="30">
+            </div>
+        </div>
+        <div class="section page3" id="section3">
+           <div class="content-wrap ">
+            <img src="../img/3-first-meet.png"  style="width:100%;">
+            <div class="fade-in">
+                 XXXX年XX月XX日 XX:XX<br>
+                怀着忐忑的心情留下了第一个脚印
+            </div>
+               
+                <img src="../img/logo.png" height="89" width="200" class="img-photo fade-in" style="margin-top:20px;">
+                <p class="fade-in">XXXXXXXXXXXXX</p>
+            </div>
+            <div class="arr-wrap">
+                <img src="../img/arr.png" class="arr up-and-down" width="30">
+            </div>
+        </div>
+        <div class="section" id="section4">
+           <div class="content-wrap">
+            <img src="../img/4-zhijin.png" style="width:100%;">
+
+                <p class="fade-in" style="font-size:22px;">
+                     共<span class="total-day light-red">XXX</span>天
+                </p>
+                 <p class="fade-in">
+                     <span class="total-state light-orange">XXX</span>条状态
+                </p>
+                 <p class="fade-in">
+                     <span class="total-pic light-red">XXX</span>张图片
+                </p>
+                 <p class="fade-in">
+                     <span class="total-day light-green">XXX</span>个文字
+                </p>
+                <p class="fade-in" style="width:300px;margin:0 auto;line-height:1.5;">
+                    记录着生活的小情绪,这些时光里的文字
+                    <br>
+                    每一个都是真实的自己
+                </p>
+
+            </div>
+            <div class="arr-wrap">
+                <img src="../img/arr.png" class="arr up-and-down" width="30">
+            </div>
+        </div>
+        <div class="section" id="section5">
+           <div class="content-wrap">
+                <div style="height:250px;width:100%;position:relative;">
+                    <img src="../img/bg-1.png"  width="100" alt="" class="random-img random-img-1 img-photo fade-in-pic">
+                     <img src="../img/logo.png"  width="135" alt="" class="random-img random-img-2 img-photo fade-in-pic">
+                     <img src="../img/logo.png"  width="100" alt="" class="random-img random-img-3 img-photo fade-in-pic">
+                     <img src="../img/logo.png"  width="100" alt="" class="random-img random-img-4 img-photo fade-in-pic">  
+                      <img src="../img/logo.png"  width="200" alt="" class="random-img random-img-5 img-photo fade-in-pic">
+
+                </div>
+                <p class="fade-in">这种不经意间的记录</p>
+                <p class="fade-in">却成为了生活中最美丽的风景和回忆</p>
+                <p class="fade-in">所有的回忆可以做成<span id="total-page" class="light-red">XXX</span>页的时光书</p>
+
+            </div>
+            <div class="arr-wrap">
+                <img src="../img/arr.png" class="arr up-and-down" width="30">
+            </div>
+        </div>
+        <div class="section" id="section6">
+           <div class="content-wrap">
+            <img src="../img/6-active.png"  style="width:100%;">
+                <div style="position:relative;">
+                    <img src="../img/6-3.png" width="270">
+                     <p style="position:absolute;top:50px;width:100%;" class="fade-in"><span class="active-year">xxxx</span>年</p>
+                     <p  style="position:absolute;bottom:40px;width:100%;color:white;" class="fade-in"><span class="active-month"></span>月</p>
+                </div>
+               
+
+                <p class="fade-in">
+                    <span class="month-states-num light-red">XXX</span>条状态
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                     <span class="month-pics-num light-red">XXX</span>张图片
+                     &nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="month-fonts-num light-red">XXX</span>个文字
+                </p>
+            </div>
+            <div class="arr-wrap">
+                <img src="../img/arr.png" class="arr up-and-down" width="30">
+            </div>
+        </div>
+        <div class="section" id="section7">
+           <div class="content-wrap">
+            <img src="../img/7-today.png" style="width:100%;">
+                <div class="fade-in">xxxx年xx月xx日XXXX</div>
+                <img src="../img/7-superman.png" width="243" class="fade-in" style="margin-top:10px;">
+                <p class="last-today-p fade-in" style="text-align:left;margin: 10px auto;width: 200px;height: 48px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap">XX不知道你是否还记得那时候的样不知道你是否还记得那时候的样不知道你是否还记得XXX</p>
+                <p class="fade-in" style="margin-top:30px;font-size:16px;"> 不知道你是否还记得那时候的样子</p>
+            </div>
+            <div class="arr-wrap">
+                <img src="../img/arr.png" class="arr up-and-down" width="30">
+            </div>
+        </div>
+        <div class="section" id="section8">
+           <div class="content-wrap">
+                <p class="fade-in">  走过了这些年的时光，</p>
+                <p class="fade-in">  经历了那么多的成长，</p>
+                <p class="fade-in">你是否还听到心底最真挚的声音：</p>
+                <h4 class="fade-in">出发再远，不忘初心</h4>
+            </div>
+            <div class="arr-wrap">
+                <img src="../img/arr.png" class="arr up-and-down" width="30">
+            </div>
+        </div>
+        <div class="section" id="section10">
+            <div class="content-wrap">
+                <p class="fade-in">时光书&nbsp;时光机</p>
+                <p class="fade-in">邀您和您的朋友一起回忆过去</p>
+                <p class="fade-in">珍藏美好</p>
+            </div>
+            <div class="arr-wrap">
+                <img src="../img/arr.png" class="arr up-and-down" width="30">
+            </div>
+        </div>
+       
+    </div>
+    <script type="text/javascript" src="../ui/fullpagedist/jquery.min.js"></script>
+    <script type="text/javascript" src="../ui/fullpagedist/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="../ui/fullpagedist/jquery.fullPage.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../js/index.js"></script>
+</body>
+
+</html>

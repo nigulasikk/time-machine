@@ -1,0 +1,47 @@
+.arr-wrap,.content-wrap{position:absolute;width:100%;text-align:center}
+.arr-wrap,.content-wrap,.random-img{position:absolute}
+*{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent}
+.up-and-down{-webkit-animation:turn-up-down 1s ease-in infinite;animation:turn-up-down 1s ease-in infinite}
+.arr-wrap{display:block;bottom:20px}
+.content-wrap{top:50%;height:400px;margin-top:-200px}
+.content-wrap .fade-in:nth-child(1){transition-delay:1s}
+.content-wrap .fade-in:nth-child(2){transition-delay:1.5s}
+.content-wrap .fade-in:nth-child(3){transition-delay:2s}
+.content-wrap .fade-in:nth-child(4){transition-delay:2.5s}
+.content-wrap .fade-in:nth-child(5){transition-delay:3s}
+.content-wrap .fade-in:nth-child(6){transition-delay:3.5s}
+.content-wrap .fade-in:nth-child(7){transition-delay:4s}
+.content-wrap .fade-in-pic:nth-child(1){transition-delay:.2s}
+.content-wrap .fade-in-pic:nth-child(2){transition-delay:.4s}
+.content-wrap .fade-in-pic:nth-child(3){transition-delay:.6s}
+.content-wrap .fade-in-pic:nth-child(4){transition-delay:.8s}
+.content-wrap .fade-in-pic:nth-child(5){transition-delay:1s}
+.content-wrap .fade-in{color:#696562;opacity:0;-webkit-transform:translateY(10px);transform:scale(10px);transition:all 1s}
+.active .content-wrap .fade-in{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}
+.content-wrap .fade-in-pic{opacity:0;-webkit-transform:translateY(40px);transform:scale(10px);transition:all 1s}
+.active .content-wrap .fade-in-pic{opacity:1}
+.img-photo{border:4px solid #fff;box-shadow:2px 2px 4px grey}
+.last-today{height:30px;width:200px;background:#f76b6b;border-radius:15px;line-height:30px;font-size:20px;margin:0 auto;color:#fff}
+#section1 .init-opacity-zero{opacity:0}
+.light-blue{color:#288adb}
+.light-red{color:#c06868;font-size:130%}
+.light-green{color:green}
+.light-orange{color:#288adb}
+#section1{background:url(../img/bg-1.png) no-repeat;background-size:cover}
+#section2{background:url(../img/2-bg.png) no-repeat;background-size:cover}
+#section3{background:url(../img/3-bg.png) no-repeat;background-size:cover}
+#section4{background:url(../img/4-bg.png) no-repeat;background-size:cover}
+#section5{background:url(../img/5-bg.png) no-repeat;background-size:cover}
+#section7{background:url(../img/7-bg.png) no-repeat;background-size:cover}
+#section8{background:url(../img/8-bg.png) no-repeat;background-size:cover}
+.active .content-wrap .random-img-1{z-index:2;left:20px;top:20px;-webkit-transform:rotate(-10deg);transform:rotate(-10deg)}
+.active .content-wrap .random-img-2{z-index:3;right:20px;top:20px;-webkit-transform:rotate(10deg);transform:rotate(10deg)}
+.active .content-wrap .random-img-3{z-index:4;left:30px;bottom:20px;-webkit-transform:rotate(-30deg);transform:rotate(-30deg)}
+.active .content-wrap .random-img-4{z-index:5;right:30px;bottom:20px;-webkit-transform:rotate(7deg);transform:rotate(7deg)}
+.active .content-wrap .random-img-5{z-index:6;left:70px;top:50px;-webkit-transform:rotate(-3deg);transform:rotate(-3deg)}
+@-webkit-keyframes turn-up-down{0%,100%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+50%{-webkit-transform:translate3d(0,-5px,0);transform:translate3d(0,-5px,0)}
+}
+@keyframes turn-up-down{0%,100%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+50%{-webkit-transform:translate3d(0,-5px,0);transform:translate3d(0,-5px,0)}
+}
