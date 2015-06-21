@@ -113,8 +113,14 @@ initDate();
 
 
 function initDate(){
-    $.get("/wxuserdatareport/timemachine?openId=oStCms_QVacAlErYQQ4vQJKvh_bY",function(res){
-        $("#name").text(res.nickName);
+    $.get("/wxuserdatareport/timemachine?openId="+RequestParameter()['openId'],function(res){
+        $("#name").text(removeAndoridMojiText(res.nickName));
+        if(res.headPicUrl==null){
+            $("#head-pic").remove();
+        }else{
+          $("#head-pic").attr("src",res.headPicUrl);
+        }
+
         $("#totalDays").text(res.totalWeixinDays);
 //初见
         var meetTime=new Date(parseInt(res.firstMessageDetail.messageDetail.postTime));
@@ -157,12 +163,44 @@ function initDate(){
             $(".last-today-p").remove();
             $(".last-date").remove();
         }else{
+              var historyTime=new Date(parseInt(res.sameDayMessageDetail.messageDetail.postTime));
+                $("#history-year").text(historyTime.getFullYear());
+                $("#history-month").text(historyTime.getMonth()+1);
+                $("#history-day").text(historyTime.getDate());
+                $("#history-hour").text(historyTime.getHours());
+                $("#history-munite").text(historyTime.getMinutes());
+
+                $("#history-words").text(res.sameDayMessageDetail.content);
+                $("#history-pic").attr("src",res.sameDayMessageDetail.imageVOs[0].imageUrl);
 
         }
 
     });
 }
 
+function RequestParameter(){
+    var url = window.location.search; //获取url中"?"符后的字串
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+        var str = url.substr(1);
+        var strs = str.split("&");
+        for(var i = 0; i < strs.length; i ++) {
+            theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+        }
+    }
+    return theRequest;
+    
+}
 
 
+function removeAndoridMojiText(text){
+    if(text==null){
+        return "";
+    }else{
+        var newText = text.replace(/\[emoji_.{4}\]/g, function(emoji) {
+            return "";
+        });
+        return newText;
+    }
 
+}
