@@ -29,9 +29,9 @@
         <div class="section section1" id="section1">
             <div class="content-wrap">
                 <div >
-                    <img src="../img/logo.png"  width="190">
+                    <img src="../img/logo.png"  width="140">
                 </div>
-                <div style="margin-top:10px;">
+                <div style="margin-top:20px;">
                     <img src="../img/title.png"  width="190">
                 </div>
                 <div  style="margin-top:20px;">
@@ -45,9 +45,10 @@
         </div>
         <div class="section page2" id="section2">
            <div class="content-wrap">
+            <img id="head-pic" width="70" style="border-radius: 50%;border: 2px white solid;">
                 <h3 class="fade-in">亲爱的<span class="light-red" id="name">XXX<span></h3>
                 <p class="fade-in">转眼间微信已经陪伴你走过了<span id="totalDays">XXX</span>个日夜</p>
-                <img src="../img/2-phone.png" width="253" class="fade-in">
+                <img src="../img/2-phone.png" width="180" class="fade-in">
               <!--   <p class="fade-in">在这里...<span class="light-blue">有你,</span><span class="light-red">有我,</span></p>
                 <p class="fade-in">还有陪你<span class="light-green">一起长大，</span><span class="light-orange">一起吵闹</span>的<span style="color:rgb(192, 104, 104);">朋友</span></p> -->
             </div>
@@ -63,7 +64,7 @@
                 怀着忐忑的心情留下了第一个脚印
             </div>
                
-                <img id="meet-first-pic" width="100" class="img-photo fade-in" style="margin-top:20px;">
+                <img id="meet-first-pic" src="../img/foot.jpg" width="100" class="img-photo fade-in" style="margin-top:20px;">
                 <p class="fade-in" id="meet-say">XXXXXXXXXXXXX</p>
             </div>
             <div class="arr-wrap">
@@ -122,7 +123,7 @@
                 <div style="position:relative;">
                     <img src="../img/6-3.png" width="270">
                      <p style="position:absolute;top:50px;width:100%;" class="fade-in"><span class="active-year">xxxx</span>年</p>
-                     <p  style="position:absolute;bottom:40px;width:100%;color:white;" class="fade-in"><span class="active-month"></span>月</p>
+                     <p  style="position:absolute;bottom:40px;width:100%;color:white;" class="fade-in"><span class="active-month">XX</span>月</p>
                 </div>
                
 
@@ -141,9 +142,12 @@
         <div class="section" id="section7">
            <div class="content-wrap">
             <img src="../img/7-today.png" class="title-img">
-                <div class="fade-in last-date">xxxx年xx月xx日XXXX</div>
-                <img src="../img/7-superman.png" width="243" class="fade-in" style="margin-top:10px;">
-                <p class="last-today-p fade-in" style="text-align:left;margin: 10px auto;width: 200px;height: 48px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap">XX不知道你是否还记得那时候的样不知道你是否还记得那时候的样不知道你是否还记得XXX</p>
+                <div class="fade-in last-date">
+                    <!-- xxxx年xx月xx日XXXX -->
+                    <span id="history-year">XXXX</span>年<span id="history-month">XX</span>月<span id="history-day">XX</span>日 <span id="history-hour">XX</span>:<span id="history-munite">XX</span><br>
+                </div>
+                <img  id="history-pic" src="../img/7-superman.png" width="150" class="fade-in" style="margin-top:10px;">
+                <p id="history-words" class="last-today-p fade-in" style="text-align:left;margin: 10px auto;width: 200px;height: 48px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap"></p>
                 <p class="fade-in" style="margin-top:30px;font-size:16px;"> 不知道你是否还记得那时候的样子</p>
             </div>
             <div class="arr-wrap">
@@ -155,21 +159,26 @@
                 <p class="fade-in">  走过了这些年的时光，</p>
                 <p class="fade-in">  经历了那么多的成长，</p>
                 <p class="fade-in">你是否还听到心底最真挚的声音：</p>
-                <h4 class="fade-in">出发再远，不忘初心</h4>
+                <h3 class="fade-in" id="signature">出发再远，不忘初心</h3>
             </div>
             <div class="arr-wrap">
                 <img src="../img/arr.png" class="arr up-and-down" width="30">
             </div>
         </div>
         <div class="section" id="section9">
-            <div class="content-wrap">
-                 <div >
-                    <img src="../img/9-2.png"  width="190">
+            <div class="content-wrap" >
+                 <div style="text-align:left;">
+                    <img src="../img/cloud.png" class="cloud-move"  width="80">
                 </div>
-                <p class="fade-in" style="margin-top:50px;">时光书&nbsp;时光机</p>
-                <p class="fade-in">邀您和您的朋友一起回忆过去</p>
-                <p class="fade-in">珍藏美好</p>
-                <img src="../img/btn-begin.png" width="130" class="fade-in" style="margin-top:50px;">
+                <p class="fade-in" style="margin-top:10px;color:white;" >时光书&nbsp;时光机</p>
+                <p class="fade-in" style="color:white;">邀您和您的朋友一起回忆过去</p>
+                <p class="fade-in" style="color:white;font-size:25px;">珍藏美好</p>
+                <div style="text-align:left;" >
+                    <img src="../img/plane.gif"  width="150">
+                    <img src="../img/cloud.png" style="float: right;" class="cloud-move2" width="100">
+
+                </div>
+                <img src="../img/btn-begin.png" id="begin-trip" width="130" class="fade-in" style="margin-top:50px;">
             </div>
             <div class="arr-wrap">
                 <img src="../img/arr.png" class="arr up-and-down" width="30">

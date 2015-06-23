@@ -4,7 +4,7 @@
  * @date    2015-04-09 23:30:20
  * @version $Id$
  */
-var distFileName = "dist";
+var distFileName = "timemachineDist";
 
 var gulp = require('gulp');
 var pngquant = require('imagemin-pngquant');

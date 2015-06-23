@@ -14,6 +14,19 @@
     animation: turn-up-down 1s ease-in infinite;
 }
 
+
+.cloud-move {
+    -webkit-animation: cloud-movement 3s ease-in infinite;
+            animation: cloud-movement 3s ease-in infinite;
+}
+
+
+.cloud-move2 {
+    -webkit-animation: cloud-movement2 5s ease-in infinite;
+            animation: cloud-movement2 5s ease-in infinite;
+}
+
+
 .arr-wrap {
     width: 100%;
     display: block;
@@ -280,3 +293,80 @@
         transform: translate3d(0px, 0px, 0px)
     }
 }
+
+
+
+
+
+
+
+@-webkit-keyframes cloud-movement {
+    0% {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px)
+    }
+    50% {
+        -webkit-transform: translate3d(4px, -2px, 0px);
+        transform: translate3d(4px, -2px, 0px)
+    }
+    100% {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px)
+    }
+}
+
+
+
+
+
+
+
+@keyframes cloud-movement {
+    0% {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px)
+    }
+    50% {
+        -webkit-transform: translate3d(4px, -2px, 0px);
+        transform: translate3d(4px, -2px, 0px)
+    }
+    100% {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px)
+    }
+}
+
+
+@-webkit-keyframes cloud-movement2 {
+    0% {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px)
+    }
+    50% {
+        -webkit-transform: translate3d(2px, 1px, 0px);
+        transform: translate3d(2px, 1px, 0px)
+    }
+    100% {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px)
+    }
+}
+
+
+@keyframes cloud-movement2 {
+    0% {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px)
+    }
+    50% {
+        -webkit-transform: translate3d(2px, 1px, 0px);
+        transform: translate3d(2px, 1px, 0px)
+    }
+    100% {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px)
+    }
+}
+
+
+
