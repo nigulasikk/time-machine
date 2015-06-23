@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    var shareDay, shareState, shareWords, sharePic;
     $('#fullpage').fullpage({
         anchors: ['firstPage', 'secondPage', '3rdPage', '4rdPage', '5rdPage', '6rdPage', '7rdPage', '8rdPage', '9rdPage', '10rdPage'],
         // sectionsColor: ['#8FB98B', '#DE564B', '#EAE1C0'],
@@ -19,35 +20,37 @@ $(document).ready(function() {
     //初始化点击率
     $.get("/marketingactivity/f89aa7644e1ea45e014e1eff343c12b6/clickno", function(no) {});
 
-    var curl = window.location.href;
+    function initWx() {
+        var curl = window.location.href;
+        var url = "/wxpay/prepare";
+        $.ajax({
+            type: "post",
+            url: url,
+            data: {
+                "curl": curl
+            },
+            success: function(response) {
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: response['appid'], // 必填，公众号的唯一标识
+                    timestamp: response['timestamp'], // 必填，生成签名的时间戳
+                    nonceStr: response['noncestr'], // 必填，生成签名的随机串
+                    signature: response['sign_result'], // 必填，签名，见附录1
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
+                });
+            },
+            error: function(response) {
+                console.log("ERROR:", response)
+            }
+        });
+    }
 
-    var url = "/wxpay/prepare";
-    $.ajax({
-        type: "post",
-        url: url,
-        data: {
-            "curl": curl
-        },
-        success: function(response) {
-            wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: response['appid'], // 必填，公众号的唯一标识
-                timestamp: response['timestamp'], // 必填，生成签名的时间戳
-                nonceStr: response['noncestr'], // 必填，生成签名的随机串
-                signature: response['sign_result'], // 必填，签名，见附录1
-                jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
-            });
-        },
-        error: function(response) {
-            console.log("ERROR:", response)
-        }
-    });
 
     wx.ready(function() {
         wx.onMenuShareTimeline({
-            title: '微信时光机标题', // 分享标题
-            link: 'http://whiletime.com/timemachineDist/html/timemachine.html?openId='+RequestParameter()['openId'], // 分享链接
-            imgUrl: 'http://whiletime.com/timemachineDist/img/title.png', // 分享图标
+            title: '在微信' + shareDay + '天，我已经记录了' + shareState + '条状态、' + sharePic + '个图片、' + shareWords + '个文字', // 分享标题
+            link: 'http://whiletime.com/timemachineDist/html/timemachine.html?openId=' + RequestParameter()['openId'], // 分享链接
+            imgUrl: 'http://whiletime.com/timemachineDist/img/sharepic.jpg', // 分享图标
             success: function() {
                 // 用户确认分享后执行的回调函数
                 $.get("/marketingactivity/f89aa7644e1ea45e014e1eff343c12b6/addshare");
@@ -58,10 +61,10 @@ $(document).ready(function() {
         });
 
         wx.onMenuShareAppMessage({
-            title: '时光机时光机标题', // 分享标题
-            desc: '时光机描述', // 分享描述
-            link: 'http://whiletime.com/timemachineDist/html/timemachine.html?openId='+RequestParameter()['openId'], // 分享链接
-            imgUrl: 'http://whiletime.com/timemachineDist/img/title.png', // 分享图标
+            title: '时光机', // 分享标题
+            desc: '在微信' + shareDay + '天，我已经记录了' + shareState + '条状态、' + sharePic + '个图片、' + shareWords + '个文字', // 分享描述
+            link: 'http://whiletime.com/timemachineDist/html/timemachine.html?openId=' + RequestParameter()['openId'], // 分享链接
+            imgUrl: 'http://whiletime.com/timemachineDist/img/sharepic.jpg', // 分享图标
             success: function() {
                 // 用户确认分享后执行的回调函数
                 $.get("/marketingactivity/f89aa7644e1ea45e014e1eff343c12b6/addshare");
@@ -108,106 +111,122 @@ $(document).ready(function() {
         myVideo.pause();
     }
     initDate();
-});
 
 
-function initDate() {
-    $.get("/wxuserdatareport/timemachine?openId=" + RequestParameter()['openId'], function(res) {
-        $("#name").text(removeAndoridMojiText(res.nickName));
-        if (res.signature != "") {
-            $("#signature").text(res.signature);
-        }
 
-        if (res.headPicUrl == null) {
-            $("#head-pic").remove();
-        } else {
-            $("#head-pic").attr("src", res.headPicUrl);
-        }
+    function initDate() {
+        $.get("/wxuserdatareport/timemachine?openId=" + RequestParameter()['openId'], function(res) {
 
-        $("#totalDays").text(res.totalWeixinDays);
-        //初见
-        var meetTime = new Date(parseInt(res.firstMessageDetail.messageDetail.postTime));
-        $("#meet-year").text(meetTime.getFullYear());
-        $("#meet-month").text(meetTime.getMonth() + 1);
-        $("#meet-day").text(meetTime.getDate());
-        $("#meet-hour").text(meetTime.getHours());
-        $("#meet-munite").text(meetTime.getMinutes());
-        // 初见照片
-        if (res.firstMessageDetail.imageVOs.length == 0) {
-            $("#meet-first-pic").remove();
-        } else {
-            $("#meet-first-pic").attr("src", res.firstMessageDetail.imageVOs[0].imageUrl);
-        }
-        $("#meet-say").text(res.firstMessageDetail.content);
-        //至今
-        $(".total-day").text(res.totalWeixinDays);
-        $(".total-state").text(res.totalDetailsNum);
-        $(".total-pic").text(res.totalImagesNum);
-        $(".total-words").text(res.totalWordsNum);
+            shareDay = res.totalWeixinDays;
+            shareState = res.totalDetailsNum;
+            shareWords = res.totalWordsNum;
+            sharePic = res.totalImagesNum;
+            // 分享内容
+            initWx();
 
 
-        //随机5张照片
-        $(".random-img-1").attr("src", res.randomImages[0].imageUrl);
-        $(".random-img-2").attr("src", res.randomImages[1].imageUrl);
-        $(".random-img-3").attr("src", res.randomImages[2].imageUrl);
-        $(".random-img-4").attr("src", res.randomImages[3].imageUrl);
-        $(".random-img-5").attr("src", res.randomImages[4].imageUrl);
-        $("#total-page").text(res.totalPagesNum);
 
-        //最活跃
-        $(".active-year").text(res.mostDetailsMonth[0]);
-        $(".active-month").text(res.mostDetailsMonth[1]);
-        $(".month-states-num").text(res.mostDetailsMonthDetailsNum);
-        $(".month-pics-num").text(res.mostDetailsMonthImagesNum);
-        $(".month-fonts-num").text(res.mostDetailsMonthWordsNum);
+            $("#name").text(removeAndoridMojiText(res.nickName));
+            if (res.signature != ""&&res.signature!=null) {
+                $("#signature").text(res.signature);
+            }
 
-        //TODO:那年今日
-        if (res.sameDayMessageDetail == null) {
-            $(".last-today-p").remove();
-            $(".last-date").remove();
-        } else {
-            var historyTime = new Date(parseInt(res.sameDayMessageDetail.messageDetail.postTime));
-            $("#history-year").text(historyTime.getFullYear());
-            $("#history-month").text(historyTime.getMonth() + 1);
-            $("#history-day").text(historyTime.getDate());
-            $("#history-hour").text(historyTime.getHours());
-            $("#history-munite").text(historyTime.getMinutes());
+            if (res.headPicUrl == null) {
+                $("#head-pic").remove();
+            } else {
+                $("#head-pic").attr("src", res.headPicUrl);
+            }
 
-            $("#history-words").text(res.sameDayMessageDetail.content);
-            $("#history-pic").attr("src", res.sameDayMessageDetail.imageVOs[0].imageUrl);
-
-        }
-
-    });
-}
-
-function RequestParameter() {
-    var url = window.location.search; //获取url中"?"符后的字串
-    var theRequest = new Object();
-    if (url.indexOf("?") != -1) {
-        var str = url.substr(1);
-        var strs = str.split("&");
-        for (var i = 0; i < strs.length; i++) {
-            theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
-        }
-    }
-    return theRequest;
-
-}
+            $("#totalDays").text(res.totalWeixinDays);
+            //初见
+            var meetTime = new Date(parseInt(res.firstMessageDetail.messageDetail.postTime));
+            $("#meet-year").text(meetTime.getFullYear());
+            $("#meet-month").text(meetTime.getMonth() + 1);
+            $("#meet-day").text(meetTime.getDate());
+            $("#meet-hour").text(meetTime.getHours());
+            $("#meet-munite").text(meetTime.getMinutes());
+            // 初见照片
+            if (res.firstMessageDetail.imageVOs.length == 0) {
+                $("#meet-first-pic").remove();
+            } else {
+                $("#meet-first-pic").attr("src", res.firstMessageDetail.imageVOs[0].imageUrl);
+            }
+            $("#meet-say").text(res.firstMessageDetail.content);
+            //至今
+            $(".total-day").text(res.totalWeixinDays);
+            $(".total-state").text(res.totalDetailsNum);
+            $(".total-pic").text(res.totalImagesNum);
+            $(".total-words").text(res.totalWordsNum);
 
 
-function removeAndoridMojiText(text) {
-    if (text == null) {
-        return "";
-    } else {
-        var newText = text.replace(/\[emoji_.{4}\]/g, function(emoji) {
-            return "";
+            //随机5张照片
+            $(".random-img-1").attr("src", res.randomImages[0].imageUrl);
+            $(".random-img-2").attr("src", res.randomImages[1].imageUrl);
+            $(".random-img-3").attr("src", res.randomImages[2].imageUrl);
+            $(".random-img-4").attr("src", res.randomImages[3].imageUrl);
+            $(".random-img-5").attr("src", res.randomImages[4].imageUrl);
+            $("#total-page").text(res.totalPagesNum);
+
+            //最活跃
+            $(".active-year").text(res.mostDetailsMonth[0]);
+            $(".active-month").text(res.mostDetailsMonth[1]);
+            $(".month-states-num").text(res.mostDetailsMonthDetailsNum);
+            $(".month-pics-num").text(res.mostDetailsMonthImagesNum);
+            $(".month-fonts-num").text(res.mostDetailsMonthWordsNum);
+
+            //TODO:那年今日
+            if (res.sameDayMessageDetail == null) {
+                $(".last-today-p").remove();
+                $(".last-date").remove();
+            } else {
+                var historyTime = new Date(parseInt(res.sameDayMessageDetail.messageDetail.postTime));
+                $("#history-year").text(historyTime.getFullYear());
+                $("#history-month").text(historyTime.getMonth() + 1);
+                $("#history-day").text(historyTime.getDate());
+                $("#history-hour").text(historyTime.getHours());
+                $("#history-munite").text(historyTime.getMinutes());
+
+                $("#history-words").text(res.sameDayMessageDetail.content);
+                $("#history-pic").attr("src", res.sameDayMessageDetail.imageVOs[0].imageUrl);
+
+            }
+
         });
-        return newText;
     }
 
-}
+    function RequestParameter() {
+        var url = window.location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
 
-$("#begin-trip").click(function() {
-    window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9a0c51de15b24815&redirect_uri=http%3a%2f%2fwww.whiletime.com%2fwxshu%2fwtMakeBookSteps.html%3fsettingsId%3dwxplatform1&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+    }
+
+
+    function removeAndoridMojiText(text) {
+        if (text == null) {
+            return "";
+        } else {
+            var newText = text.replace(/\[emoji_.{4}\]/g, function(emoji) {
+                return "";
+            });
+            return newText;
+        }
+
+    }
+
+    $("#begin-trip").click(function() {
+        window.location.href = "follow.html";
+    });
+
+
+
+
+
 });
