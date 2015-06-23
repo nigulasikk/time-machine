@@ -153,7 +153,7 @@ $(document).ready(function() {
             }
             $("#meet-say").text(res.firstMessageDetail.content);
             //至今
-            $(".total-day").text(res.totalWeixinDays);
+            // $(".total-day").text(res.totalWeixinDays);
             $(".total-state").text(res.totalDetailsNum);
             $(".total-pic").text(res.totalImagesNum);
             $(".total-words").text(res.totalWordsNum);
